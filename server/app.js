@@ -17,8 +17,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.get('/', async (req, res) => {
+  const searchQuery = req.url.replace('/', '');
   console.log('GET /');
-  const url = 'https://esb.goteborg.se/TEIK/Kalendarium/v1_0/activities?size=12';
+  const url = `https://esb.goteborg.se/TEIK/Kalendarium/v1_0/activities${searchQuery}`;
   const result = await fetch(url, {
     method: 'get',
     headers: { Authorization: 'Basic a2FsZW5kYXJpZWFwaTpWNVNcZVdzQA==' },
@@ -27,9 +28,11 @@ app.get('/', async (req, res) => {
   // console.log(helper.extractPagination(data));
   // console.log(helper.extractPreview(data.content));
 
+  // console.log(req.url.replace('/', ''), req.query);
   res.json({
     pagination: helper.extractPagination(data),
     content: helper.extractPreview(data.content),
+    query: req.query,
   });
   // res.json('Hellou World!');
 });
