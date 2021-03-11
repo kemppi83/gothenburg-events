@@ -3,12 +3,12 @@ import React from 'react';
 import EventListItem from '../eventlistitem/EventListItem';
 import './EventList.css';
 
-const EventList = ({ eventsObj }) => {
-  console.log(eventsObj.content);
+const EventList = ({ eventsObj, handlePopup }) => {
+  // console.log(eventsObj.content);
 
   const events = eventsObj.content.map(event => (
     // <div className="container" key={event.id}>
-    <EventListItem key={event.id} event={event} />
+    <EventListItem key={event.id} event={event} handlePopup={handlePopup} />
     // </div>
   ));
 

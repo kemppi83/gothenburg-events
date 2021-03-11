@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import Pagination from '../pagination/Pagination';
+import PopUp from '../popup/PopUp';
 import './App.css';
 
 const App = () => {
   const [eventsObj, setEvents] = useState();
   const [error, setError] = useState('');
+  const [toggle, setToggle] = useState(false);
+  const [details, setDetails] = useState(false);
 
-  const fetchData = async url => {
+  const fetchData = async (url, single = false) => {
     try {
       const result = await fetch(url, {
         method: 'GET',
@@ -16,9 +19,14 @@ const App = () => {
       });
       const resultJson = await result.json();
       // console.log(resultJson);
-      setEvents(resultJson);
+      if (single) {
+        setDetails(resultJson);
+        setToggle(!toggle);
+      } else {
+        setEvents(resultJson);
+      }
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       setError(err.message);
     }
   };
@@ -28,8 +36,15 @@ const App = () => {
     fetchData(url);
   };
 
-  console.log(eventsObj, 'eventsObj');
-  console.log(error, 'error');
+  const handlePopup = e => {
+    // console.log('e.target: ', e.target.value);
+    const url = `http://localhost:3001/${e.target.value}`;
+    // setFetchId(e.target.value);
+    fetchData(url, true);
+  };
+
+  // console.log(eventsObj, 'eventsObj');
+  // console.log(error, 'error');
   return (
     <div className="App">
       <header className="App-header">
@@ -42,10 +57,11 @@ const App = () => {
         null
       )}
       {eventsObj ? (
-        <Pagination eventsObj={eventsObj} fetchData={fetchData} />
+        <Pagination eventsObj={eventsObj} fetchData={fetchData} handlePopup={handlePopup} />
       ) : (
         null
       )}
+      {toggle ? <PopUp details={details.content} setToggle={setToggle} /> : null}
     </div>
   );
 };

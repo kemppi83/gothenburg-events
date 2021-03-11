@@ -9,3 +9,9 @@ export const paginationUrl = (requestQuery, pageNumber) => {
   return `http://localhost:3001?${queryArray.join('&&')}`;
   // console.log('query: ', query);
 };
+
+export const eventTimeString = (date, text) => {
+  const minutes = date.getMinutes() < 10 ? `0${date.getMinutes()}` : `${date.getMinutes()}`;
+  const hours = date.getHours() < 10 ? `0${date.getHours()}` : `${date.getHours()}`;
+  return `${text}: \n ${date.toDateString()} at ${hours}:${minutes}`;
+};

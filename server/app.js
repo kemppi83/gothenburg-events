@@ -25,6 +25,7 @@ app.get('/', async (req, res) => {
     headers: { Authorization: 'Basic a2FsZW5kYXJpZWFwaTpWNVNcZVdzQA==' },
   });
   const data = await result.json();
+  // console.log(data.content);
   // console.log(helper.extractPagination(data));
   // console.log(helper.extractPreview(data.content));
 
@@ -35,6 +36,27 @@ app.get('/', async (req, res) => {
     query: req.query,
   });
   // res.json('Hellou World!');
+});
+
+app.get('/:id', async (req, res) => {
+  console.log('GET /:id');
+  console.log(req.params.id);
+
+  const url = `https://esb.goteborg.se/TEIK/Kalendarium/v1_0/activities/${req.params.id}`;
+  const result = await fetch(url, {
+    method: 'get',
+    headers: { Authorization: 'Basic a2FsZW5kYXJpZWFwaTpWNVNcZVdzQA==' },
+  });
+  const data = await result.json();
+  console.log(data.content);
+  // console.log(helper.extractPagination(data));
+  // console.log(helper.extractPreview(data.content));
+
+  // console.log(req.url.replace('/', ''), req.query);
+  res.json({
+    content: helper.extractDetails(data.content),
+  });
+  // res.json(data.content);
 });
 
 module.exports.app = app;
