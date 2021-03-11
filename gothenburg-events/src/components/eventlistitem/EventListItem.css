@@ -1,0 +1,19 @@
+.event-list__item {
+  margin: 10px;
+  width: 250px;
+}
+
+.event-list__title {
+  height: 60px;
+  font-weight: bold;
+};
+
+.img-container {
+  width: 250px;
+};
+
+.event-list__img {
+  max-width: 100%;
+  max-height: 100%;
+  display: block; /* remove extra space below image */
+};
