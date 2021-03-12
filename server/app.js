@@ -29,7 +29,7 @@ app.get('/', async (req, res) => {
   // console.log(helper.extractPagination(data));
   // console.log(helper.extractPreview(data.content));
 
-  // console.log(req.url.replace('/', ''), req.query);
+  console.log(req.url.replace('/', ''), req.query);
   res.json({
     pagination: helper.extractPagination(data),
     content: helper.extractPreview(data.content),
@@ -48,7 +48,7 @@ app.get('/:id', async (req, res) => {
     headers: { Authorization: 'Basic a2FsZW5kYXJpZWFwaTpWNVNcZVdzQA==' },
   });
   const data = await result.json();
-  console.log(data.content);
+  // console.log(data.content);
   // console.log(helper.extractPagination(data));
   // console.log(helper.extractPreview(data.content));
 

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import Pagination from '../pagination/Pagination';
 import PopUp from '../popup/PopUp';
-import './App.css';
+import Filter from '../filter/Filter';
+// import './App.css';
 
 const App = () => {
   const [eventsObj, setEvents] = useState();
@@ -31,10 +32,10 @@ const App = () => {
     }
   };
 
-  const handleSubmit = () => {
-    const url = 'http://localhost:3001?fromDate=2021-03-11&&toDate=2021-03-12&&size=12&&page=0';
-    fetchData(url);
-  };
+  // const handleSubmit = () => {
+  //   const url = 'http://localhost:3001?fromDate=2021-03-11&&toDate=2021-03-12&&size=12&&page=0';
+  //   fetchData(url);
+  // };
 
   const handlePopup = e => {
     // console.log('e.target: ', e.target.value);
@@ -49,8 +50,8 @@ const App = () => {
     <div className="App">
       <header className="App-header">
         <h1>Gothenburg events</h1>
-        <button type="button" onClick={handleSubmit}>Test</button>
       </header>
+      <Filter fetchData={fetchData} />
       {error ? (
         <p className="error-message">{error}</p>
       ) : (
