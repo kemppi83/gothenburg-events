@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Raleway:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@200;400&family=Open+Sans&family=Raleway:wght@200&display=swap');
+
+.nice-dates-navigation, .nice-dates-day {
+  color: #111;
+}
+
+.nice-dates-popover {
+  box-shadow: none;
+  border: 1px solid #ddd;
+  border-radius: 2px;
+  max-width: 480px;
+  transition: none;
+}
+
+.input-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.calendar-container,
+.text-container {
+  width: 18em;
+  height: 20em;
+  margin: 30px;
+}
+
+.text-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Fira Sans', sans-serif;
+}
+
+.form {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.submit-button {
+  margin: 30px;
+  max-width: 130px;
+  padding: 10px;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 7px;
+}
+
+.submit-button:hover {
+  outline: 10px;
+  background-color: black;
+  color: white;
+  font-weight: bold;
+}
+
+.submit-button:focus {
+  outline: none;
+}
+
+.input-title {
+  font-family: 'Open Sans', sans-serif;
+  font-family: 'Raleway', sans-serif;
+  font-weight: bold;
+  margin-top: 10px;
+  font-size: 20px;
+}
+
+.search-input {
+  width: 80%;
+  line-height: 30px;
+  border: 1px solid black;
+  border-radius: 3px;
+}
+
+.search-input:hover {
+  border: 2px solid black;
+}
+
+.search-input:focus {
+  border: 2px solid black;
+  background-color: black;
+  color: white;
+}
