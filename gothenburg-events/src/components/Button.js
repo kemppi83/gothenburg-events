@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import './Button.css';
 
 const Button = ({ url, rel, fetchData }) => {
   const buttonClass = `${rel}-button button`;

@@ -1,5 +1,4 @@
 const express = require('express');
-// const path = require('path');
 const bodyParser = require('body-parser');
 const fetch = require('node-fetch');
 const helper = require('./helper');
@@ -12,7 +11,6 @@ app.use((req, res, next) => {
   next();
 });
 
-// app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -25,9 +23,6 @@ app.get('/', async (req, res) => {
     headers: { Authorization: 'Basic a2FsZW5kYXJpZWFwaTpWNVNcZVdzQA==' },
   });
   const data = await result.json();
-  // console.log(data.content);
-  // console.log(helper.extractPagination(data));
-  // console.log(helper.extractPreview(data.content));
 
   console.log(req.url.replace('/', ''), req.query);
   res.json({
@@ -35,7 +30,6 @@ app.get('/', async (req, res) => {
     content: helper.extractPreview(data.content),
     query: req.query,
   });
-  // res.json('Hellou World!');
 });
 
 app.get('/:id', async (req, res) => {
@@ -48,15 +42,10 @@ app.get('/:id', async (req, res) => {
     headers: { Authorization: 'Basic a2FsZW5kYXJpZWFwaTpWNVNcZVdzQA==' },
   });
   const data = await result.json();
-  // console.log(data.content);
-  // console.log(helper.extractPagination(data));
-  // console.log(helper.extractPreview(data.content));
 
-  // console.log(req.url.replace('/', ''), req.query);
   res.json({
     content: helper.extractDetails(data.content),
   });
-  // res.json(data.content);
 });
 
 module.exports.app = app;

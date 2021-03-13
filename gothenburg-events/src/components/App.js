@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import Pagination from '../pagination/Pagination';
-import PopUp from '../popup/PopUp';
-import Filter from '../filter/Filter';
-// import './App.css';
+import Pagination from './Pagination';
+import PopUp from './PopUp';
+import Filter from './Filter';
 
 const App = () => {
   const [eventsObj, setEvents] = useState();
@@ -19,7 +18,6 @@ const App = () => {
         },
       });
       const resultJson = await result.json();
-      // console.log(resultJson);
       if (single) {
         setDetails(resultJson);
         setToggle(!toggle);
@@ -27,30 +25,21 @@ const App = () => {
         setEvents(resultJson);
       }
     } catch (err) {
-      // console.log(err);
       setError(err.message);
     }
   };
 
-  // const handleSubmit = () => {
-  //   const url = 'http://localhost:3001?fromDate=2021-03-11&&toDate=2021-03-12&&size=12&&page=0';
-  //   fetchData(url);
-  // };
-
   const handlePopup = e => {
-    // console.log('e.target: ', e.target.value);
     const url = `http://localhost:3001/${e.target.value}`;
-    // setFetchId(e.target.value);
     fetchData(url, true);
   };
 
-  // console.log(eventsObj, 'eventsObj');
-  // console.log(error, 'error');
   return (
     <div className="App">
       <header className="App-header">
         <h1>Gothenburg events</h1>
       </header>
+      <p className="intro">Find out what&apos;s going on in Gothenburg!</p>
       <Filter fetchData={fetchData} />
       {error ? (
         <p className="error-message">{error}</p>

@@ -1,15 +1,10 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import EventListItem from '../eventlistitem/EventListItem';
-import './EventList.css';
+import EventListItem from './EventListItem';
 
 const EventList = ({ eventsObj, handlePopup }) => {
-  // console.log(eventsObj.content);
-
   const events = eventsObj.content.map(event => (
-    // <div className="container" key={event.id}>
     <EventListItem key={event.id} event={event} handlePopup={handlePopup} />
-    // </div>
   ));
 
   return (

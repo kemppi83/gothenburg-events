@@ -1,9 +1,8 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import EventList from '../eventlist/EventList';
-import Button from '../button/Button';
-import { paginationUrl } from '../../helper/helper';
-import './Pagination.css';
+import EventList from './EventList';
+import Button from './Button';
+import { paginationUrl } from '../helper/helper';
 
 const Pagination = ({ eventsObj, fetchData, handlePopup }) => {
   const {
@@ -24,8 +23,6 @@ const Pagination = ({ eventsObj, fetchData, handlePopup }) => {
     buttonRels.push('next', 'last');
   }
 
-  // console.log('buttonUrls: ', buttonUrls);
-  // console.log('buttonRels: ', buttonRels);
   const buttons = buttonUrls.map((link, index) => (
     <Button key={buttonRels[index]} url={link} rel={buttonRels[index]} fetchData={fetchData} />
   ));

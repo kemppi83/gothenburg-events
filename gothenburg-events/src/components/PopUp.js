@@ -4,8 +4,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import SanitizedHTML from 'react-sanitized-html';
-import './PopUp.css';
-import { eventTimeString } from '../../helper/helper';
+import { eventTimeString } from '../helper/helper';
 
 const PopUp = ({ details, setToggle }) => {
   console.log(details);
@@ -21,12 +20,14 @@ const PopUp = ({ details, setToggle }) => {
           &times;
         </span>
         {details ? (
-          <div className="event-list__item">
-            <img className="event-list__item" src={details.imgUrl} alt={details.imgCopyright} />
-            <h3 className="event-list__title">{details.title}</h3>
+          <div className="event-details__item">
+            <div className="details__img-container">
+              <img className="event-details__item" src={details.imgUrl} alt={details.imgCopyright} />
+            </div>
+            <h3 className="event-details__title">{details.title}</h3>
             <SanitizedHTML className="description" html={details.description} />
-            <p className="event-list__startTime">{eventTimeString(new Date(details.startTime), 'start')}</p>
-            <p className="event-list__endTime">{eventTimeString(new Date(details.endTime), 'end')}</p>
+            <p className="event-details__startTime">{eventTimeString(new Date(details.startTime), 'start')}</p>
+            <p className="event-details__endTime">{eventTimeString(new Date(details.endTime), 'end')}</p>
             <p>{details.locationName}</p>
           </div>
         ) : (

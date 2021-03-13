@@ -5,7 +5,6 @@ import { format } from 'date-fns';
 import { enGB } from 'date-fns/locale';
 import { DateRangePickerCalendar, START_DATE } from 'react-nice-dates';
 import 'react-nice-dates/build/style.css';
-import './Filter.css';
 
 const Filter = ({ fetchData }) => {
   const [startDate, setStartDate] = useState();
@@ -14,11 +13,6 @@ const Filter = ({ fetchData }) => {
   const handleFocusChange = newFocus => {
     setFocus(newFocus || START_DATE);
   };
-
-  // if (startDate) {
-  //   const test = format(startDate, 'yyyy-MM-dd', { locale: enGB });
-  //   console.log('format: ', test, typeof test);
-  // }
 
   const handleCallback = e => {
     e.preventDefault();
@@ -71,35 +65,45 @@ const Filter = ({ fetchData }) => {
     }
   };
 
+  const clearDates = () => {
+    setStartDate();
+    setEndDate();
+    handleFocusChange(START_DATE);
+  };
+
   return (
-    <div className="calendar-container">
-      <p>
-        Selected start date:
-        {startDate ? format(startDate, 'yyyy-MM-dd', { locale: enGB }) : 'none'}
-        .
-      </p>
-      <p>
-        Selected end date:
-        {endDate ? format(endDate, 'dd MMM yyyy', { locale: enGB }) : 'none'}
-        .
-      </p>
-      <p>
-        Currently selecting:
-        {focus}
-        .
-      </p>
-      <DateRangePickerCalendar
-        startDate={startDate}
-        endDate={endDate}
-        focus={focus}
-        onStartDateChange={setStartDate}
-        onEndDateChange={setEndDate}
-        onFocusChange={handleFocusChange}
-        locale={enGB}
-      />
-      <div className="form-container">
+    <div className="input-container">
+      <div className="calendar-container">
+        <DateRangePickerCalendar
+          startDate={startDate}
+          endDate={endDate}
+          focus={focus}
+          onStartDateChange={setStartDate}
+          onEndDateChange={setEndDate}
+          onFocusChange={handleFocusChange}
+          locale={enGB}
+        />
+      </div>
+      <div className="text-container">
+        <h2 className="input-title">Filter events</h2>
+        <p>
+          {!(startDate || endDate)
+            ? 'You can filter events by date.'
+            : 'Search period:' }
+        </p>
+        <p>
+          {startDate ? `start date: ${format(startDate, 'dd MMM yyyy', { locale: enGB })}` : null}
+        </p>
+        <p>
+          {endDate ? `end date: ${format(endDate, 'dd MMM yyyy', { locale: enGB })}` : null}
+        </p>
+        <p>
+          {(startDate || endDate)
+            ? <button type="button" className="clear" onClick={() => clearDates()}>clear</button>
+            : null }
+        </p>
         <form className="form" autoComplete="off" onSubmit={e => handleCallback(e)} onFocus={e => handleFormFocus(e)}>
-          <input className="search-input" type="text" name="search" placeholder="Optional" list="datalist" />
+          <input className="search-input" type="text" name="search" placeholder="Text search" list="datalist" />
           <datalist id="datalist" />
           <input type="submit" className="submit-button" value="Search events" />
         </form>
