@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const fetch = require('node-fetch');
 const helper = require('./helper');
+require('dotenv').config();
 
 const app = express();
 
@@ -20,7 +21,7 @@ app.get('/', async (req, res) => {
   const url = `https://esb.goteborg.se/TEIK/Kalendarium/v1_0/activities${searchQuery}`;
   const result = await fetch(url, {
     method: 'get',
-    headers: { Authorization: 'Basic a2FsZW5kYXJpZWFwaTpWNVNcZVdzQA==' },
+    headers: { Authorization: process.env.API_AUTH },
   });
   const data = await result.json();
 
@@ -39,7 +40,7 @@ app.get('/:id', async (req, res) => {
   const url = `https://esb.goteborg.se/TEIK/Kalendarium/v1_0/activities/${req.params.id}`;
   const result = await fetch(url, {
     method: 'get',
-    headers: { Authorization: 'Basic a2FsZW5kYXJpZWFwaTpWNVNcZVdzQA==' },
+    headers: { Authorization: process.env.API_AUTH },
   });
   const data = await result.json();
 
