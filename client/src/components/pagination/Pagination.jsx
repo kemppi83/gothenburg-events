@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import EventList from './EventList';
-import Button from './Button';
-import { paginationUrl } from '../helper/helper';
+import EventList from '../events/EventList';
+import Button from '../button/Button';
+import { paginationUrl } from '../../helper/helper';
 
 const Pagination = ({ eventsObj, fetchData, handlePopup }) => {
   const {

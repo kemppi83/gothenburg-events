@@ -2,14 +2,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@200;400&family=Open+Sans&family=Raleway:wght@200&display=swap');
 
 .event-list__item {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
   margin: 10px;
   width: 250px;
   padding: 10px;
   font-family: 'Fira Sans', sans-serif;
+  border: 1px solid white;
 }
 
 .event-list__item:hover {
-  border: 1px solid black;
+  border-color: black;
+}
+
+.item__info {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
 }
 
 .img-container {
@@ -36,13 +46,13 @@
 };
 
 .event-list__button--info {
-  float: right;
-  border: solid;
+  align-self: center;
   padding: 5px;
   width: 90px;
   border: 2px solid black;
   border-radius: 7px;
-  margin: 0px 5px;
+  // margin: 10px 5px 0 5px;
+  margin-top: 10px;
   font-size: 15px;
 }
 

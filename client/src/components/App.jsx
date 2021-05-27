@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import Pagination from './Pagination';
-import PopUp from './PopUp';
-import Filter from './Filter';
+import Pagination from './pagination/Pagination';
+import PopUp from './popup/PopUp';
+import Filter from './filter/Filter';
 
 const App = () => {
   const [eventsObj, setEvents] = useState();
@@ -41,17 +41,10 @@ const App = () => {
       </header>
       <p className="intro">Find out what&apos;s going on in Gothenburg!</p>
       <Filter fetchData={fetchData} />
-      {error ? (
-        <p className="error-message">{error}</p>
-      ) : (
-        null
-      )}
-      {eventsObj ? (
-        <Pagination eventsObj={eventsObj} fetchData={fetchData} handlePopup={handlePopup} />
-      ) : (
-        null
-      )}
-      {toggle ? <PopUp details={details.content} setToggle={setToggle} /> : null}
+      {error && <p className="error-message">{error}</p>}
+      {eventsObj
+        && <Pagination eventsObj={eventsObj} fetchData={fetchData} handlePopup={handlePopup} />}
+      {toggle && <PopUp details={details.content} setToggle={setToggle} />}
     </div>
   );
 };

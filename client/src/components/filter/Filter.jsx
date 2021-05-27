@@ -50,7 +50,6 @@ const Filter = ({ fetchData }) => {
   };
 
   const handleFormFocus = e => {
-    console.log('e.target.className: ', e.target.className);
     if (e.target.className === 'search-input') {
       e.target.nextElementSibling.innerHTML = '';
       if (localStorage.getItem('search') != null) {
@@ -81,8 +80,7 @@ const Filter = ({ fetchData }) => {
           onStartDateChange={setStartDate}
           onEndDateChange={setEndDate}
           onFocusChange={handleFocusChange}
-          locale={enGB}
-        />
+          locale={enGB} />
       </div>
       <div className="text-container">
         <h2 className="input-title">Filter events</h2>
@@ -92,15 +90,14 @@ const Filter = ({ fetchData }) => {
             : 'Search period:' }
         </p>
         <p>
-          {startDate ? `start date: ${format(startDate, 'dd MMM yyyy', { locale: enGB })}` : null}
+          {startDate && `start date: ${format(startDate, 'dd MMM yyyy', { locale: enGB })}`}
         </p>
         <p>
-          {endDate ? `end date: ${format(endDate, 'dd MMM yyyy', { locale: enGB })}` : null}
+          {endDate && `end date: ${format(endDate, 'dd MMM yyyy', { locale: enGB })}`}
         </p>
         <p>
           {(startDate || endDate)
-            ? <button type="button" className="clear" onClick={() => clearDates()}>clear</button>
-            : null }
+            && <button type="button" className="clear" onClick={() => clearDates()}>clear</button>}
         </p>
         <form className="form" autoComplete="off" onSubmit={e => handleCallback(e)} onFocus={e => handleFormFocus(e)}>
           <input className="search-input" type="text" name="search" placeholder="Text search" list="datalist" />
