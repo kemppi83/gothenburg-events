@@ -4,6 +4,7 @@ import PopUp from './popup/PopUp';
 import Filter from './filter/Filter';
 
 const App = () => {
+  // This comment to allow build in Netlify
   const [eventsObj, setEvents] = useState();
   const [error, setError] = useState('');
   const [toggle, setToggle] = useState(false);
