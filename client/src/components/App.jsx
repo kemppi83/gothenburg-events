@@ -30,7 +30,7 @@ const App = () => {
   };
 
   const handlePopup = e => {
-    const url = `http://localhost:3001/${e.target.value}`;
+    const url = `${process.env.REACT_APP_SERVER_URL}/${e.target.value}`;
     fetchData(url, true);
   };
 

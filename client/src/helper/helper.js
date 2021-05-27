@@ -5,7 +5,7 @@ export const paginationUrl = (requestQuery, pageNumber) => {
   const keys = Object.keys(query);
   const values = Object.values(query);
   const queryArray = keys.map((item, index) => `${item}=${values[index]}`);
-  return `http://localhost:3001?${queryArray.join('&&')}`;
+  return `${process.env.REACT_APP_SERVER_URL}?${queryArray.join('&&')}`;
 };
 
 export const eventTimeString = (date, text) => {

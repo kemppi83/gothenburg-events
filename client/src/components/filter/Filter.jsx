@@ -46,7 +46,7 @@ const Filter = ({ fetchData }) => {
     queryArray.push('size=12', 'page=0');
 
     e.target.querySelector('.search-input').value = '';
-    fetchData(`http://localhost:3001?${queryArray.join('&&')}`);
+    fetchData(`${process.env.REACT_APP_SERVER_URL}?${queryArray.join('&&')}`);
   };
 
   const handleFormFocus = e => {
