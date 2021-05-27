@@ -4,11 +4,9 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import SanitizedHTML from 'react-sanitized-html';
-import { eventTimeString } from '../helper/helper';
+import { eventTimeString } from '../../helper/helper';
 
 const PopUp = ({ details, setToggle }) => {
-  console.log(details);
-
   const handleClick = () => {
     setToggle(toggle => !toggle);
   };
@@ -19,7 +17,7 @@ const PopUp = ({ details, setToggle }) => {
         <span className="close" onClick={handleClick}>
           &times;
         </span>
-        {details ? (
+        {details && (
           <div className="event-details__item">
             <div className="details__img-container">
               <img className="event-details__item" src={details.imgUrl} alt={details.imgCopyright} />
@@ -30,8 +28,6 @@ const PopUp = ({ details, setToggle }) => {
             <p className="event-details__endTime">{eventTimeString(new Date(details.endTime), 'end')}</p>
             <p>{details.locationName}</p>
           </div>
-        ) : (
-          null
         )}
       </div>
     </div>
