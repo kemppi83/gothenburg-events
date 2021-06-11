@@ -10,9 +10,9 @@ const extractPreview = data => data.map(event => ({
   title: event.title,
   startTime: event.startTime,
   endTime: event.endTime,
-  ...event.location.name && { locationName: event.location.name },
-  ...event.location.latitude && { locationLat: event.location.latitude },
-  ...event.location.longitude && { locationLon: event.location.longitude },
+  ...event.location && event.location.name && { locationName: event.location.name },
+  ...event.location && event.location.latitude && { locationLat: event.location.latitude },
+  ...event.location && event.location.longitude && { locationLon: event.location.longitude },
   ...event.image && { imgUrl: `${event.image.host}${event.image.path}` },
   ...event.image && event.image.copyright && { imgCopyright: event.image.copyright },
 }));
@@ -23,11 +23,11 @@ const extractDetails = event => ({
   description: event.description,
   startTime: event.startTime,
   endTime: event.endTime,
-  ...event.location.name && { locationName: event.location.name },
-  ...event.location.latitude && { locationLat: event.location.latitude },
-  ...event.location.longitude && { locationLon: event.location.longitude },
+  ...event.location && event.location.name && { locationName: event.location.name },
+  ...event.location && event.location.latitude && { locationLat: event.location.latitude },
+  ...event.location && event.location.longitude && { locationLon: event.location.longitude },
   ...event.image && { imgUrl: `${event.image.host}${event.image.path}` },
-  ...event.image.copyright && { imgCopyright: event.image.copyright },
+  ...event.image && event.image.copyright && { imgCopyright: event.image.copyright },
 });
 
 module.exports = {

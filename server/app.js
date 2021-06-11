@@ -23,6 +23,7 @@ app.get('/', async (req, res) => {
     headers: { Authorization: process.env.API_AUTH },
   });
   const data = await result.json();
+  console.log(data);
 
   res.json({
     pagination: helper.extractPagination(data),
@@ -30,6 +31,8 @@ app.get('/', async (req, res) => {
     query: req.query,
   });
 });
+
+app.get('/ping', (req, res) => res.send('Hello'));
 
 app.get('/:id', async (req, res) => {
   const url = `${process.env.API_URL}/${req.params.id}`;
