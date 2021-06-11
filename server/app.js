@@ -1,10 +1,13 @@
 const express = require('express');
+const cors = require('cors');
 const bodyParser = require('body-parser');
 const fetch = require('node-fetch');
 const helper = require('./helper');
 require('dotenv').config();
 
 const app = express();
+
+app.get('/ping', cors(), (req, res) => res.send('Hello'));
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', process.env.ALLOWED_ORIGIN);
@@ -23,7 +26,6 @@ app.get('/', async (req, res) => {
     headers: { Authorization: process.env.API_AUTH },
   });
   const data = await result.json();
-  console.log(data);
 
   res.json({
     pagination: helper.extractPagination(data),
@@ -31,8 +33,6 @@ app.get('/', async (req, res) => {
     query: req.query,
   });
 });
-
-app.get('/ping', (req, res) => res.send('Hello'));
 
 app.get('/:id', async (req, res) => {
   const url = `${process.env.API_URL}/${req.params.id}`;
